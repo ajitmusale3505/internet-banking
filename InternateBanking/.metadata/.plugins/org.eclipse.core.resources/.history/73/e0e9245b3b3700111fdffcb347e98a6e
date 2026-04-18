@@ -1,0 +1,23 @@
+package com.jsp.internatebanking.dao;
+
+import javax.persistence.EntityManager;
+import javax.persistence.Query;
+
+import com.jsp.internatebanking.util.JPAUtil;
+
+public class TransactionDao {
+
+	public static boolean isValidUSer(String email) {
+		EntityManager em = JPAUtil.getEMF();
+		System.out.println("Email from TransactionDao : "+email);
+		try {
+			Query query = em.createQuery("from Users u where u.email=:email");
+			query.setParameter("email", email);
+			Object singleResult = query.getSingleResult();
+			System.out.println("Result : "+singleResult);
+			return true;
+		} catch (Exception e) {
+			 return false;
+		}
+	}
+}

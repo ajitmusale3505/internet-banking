@@ -1,0 +1,37 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1" import="com.jsp.internatebanking.entity.Users"%>
+
+<%@ page isELIgnored="false" %>
+    
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Dashboard</title>
+
+<link rel="stylesheet" href="css/dashboard.css">
+
+</head>
+<body>
+
+<%
+Users user = (Users) session.getAttribute("user");
+%>
+
+<div class="dashboard">
+
+    <h1>Welcome ${name}</h1>
+
+    <div class="menu">
+        <a href="balance">Check Balance</a>
+        <a href="transaction.jsp">Send Money</a>
+        <a href="history">View Statement</a>
+        <a href="logout">Logout</a>
+        <a href="userprofile.jsp">Profile</a>
+        
+    </div>
+
+</div>
+
+</body>	
+</html>

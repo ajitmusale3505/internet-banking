@@ -1,0 +1,89 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8" isELIgnored="false"%>
+
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
+<link rel="stylesheet" href="css/history.css">
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Transactions</title>
+</head>
+<body>
+
+<h2>Bank Transactions</h2>
+
+<!-- FILTER FORM -->
+<form action="history" method="get">
+
+    <label>Filter:</label>
+
+    <select name="type">
+        <option value="all" ${param.type == null || param.type == 'all' ? 'selected' : ''}>All</option>
+        <option value="debit" ${param.type == 'debit' ? 'selected' : ''}>Debit</option>
+        <option value="credit" ${param.type == 'credit' ? 'selected' : ''}>Credit</option>
+    </select>
+
+    <input type="submit" value="Apply Filter">
+
+</form>
+
+<form action="downloadStatement" method="get" style="display:inline;">
+    <input type="submit" value="⬇ Download PDF">
+</form>
+
+<br>
+
+<!-- TRANSACTION TABLE -->
+<table border="1">
+
+    <tr>
+        <th>Status</th>
+        <th>Transaction ID</th>
+        <th>Amount</th>
+        <th>Date</th>
+    </tr>
+
+    <!-- CHECK IF DATA EXISTS -->
+    <c:if test="${empty transactions}">
+        <tr>
+            <td colspan="4">No transactions found</td>
+        </tr>
+    </c:if>
+
+    <!-- DISPLAY DATA -->
+    <c:forEach var="t" items="${transactions}">
+
+        <tr>
+
+            <td class="${t.senderID == userId ? 'debit' : 'credit'}">
+
+                <c:choose>
+                    <c:when test="${t.senderID == userId}">
+                        DEBIT
+                    </c:when>
+                    <c:otherwise>
+                        CREDIT
+                    </c:otherwise>
+                </c:choose>
+
+            </td>
+
+            <td>${t.id}</td>
+            <td>${t.amount}</td>
+            <td>${t.transactionTime}</td>
+
+        </tr>
+
+    </c:forEach>
+
+</table>
+
+<br>
+
+<a href="dashboard.jsp">Back To Dashboard</a>
+
+</body>
+</html>

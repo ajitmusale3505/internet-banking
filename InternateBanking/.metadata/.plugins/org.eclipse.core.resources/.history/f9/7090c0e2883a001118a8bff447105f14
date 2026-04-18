@@ -1,0 +1,31 @@
+/* Dashboard Container */
+.dashboard {
+    width: 400px;
+    margin: 80px auto;
+    padding: 25px;
+    background-color: white;
+    box-shadow: 0px 4px 12px rgba(0,0,0,0.1);
+    border-radius: 8px;
+    text-align: center;
+}
+
+/* Welcome text */
+.dashboard h1 {
+    color: #1e3a8a;
+    margin-bottom: 20px;
+}
+
+/* Menu links */
+.menu a {
+    display: block;
+    margin: 10px 0;
+    padding: 10px;
+    background-color: #1e3a8a;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.menu a:hover {
+    background-color: #2563eb;
+}

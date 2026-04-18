@@ -1,0 +1,64 @@
+package com.jsp.internatebanking.controller;
+
+import java.io.IOException;
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import com.jsp.internatebanking.dao.TransactionDao;
+import com.jsp.internatebanking.entity.BankTransaction;
+import com.jsp.internatebanking.entity.Users;
+import com.jsp.internatebanking.util.JPAUtil;
+
+@WebServlet(value = "/transaction")
+public class TransactionController extends HttpServlet{
+
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
+		String email = req.getParameter("email");
+		String at =  req.getParameter("amount");
+		double amount = Double.parseDouble(at);
+		System.out.println(email);
+		System.out.println(amount);
+		
+		HttpSession session = req.getSession();
+		boolean validUSer = TransactionDao.isValidUSer(email);
+	    if (validUSer) {
+	    	Users user = (Users) session.getAttribute("user");
+	    	System.out.println("User in Trnasaction COntroller : "+user);
+			BankTransaction bankTransaction = new BankTransaction(user.getId(), TransactionDao.getUserId(email).getId(), amount);
+			
+			double sendblncbefore = user.getBalance();
+			if (amount>=sendblncbefore) {
+				 session.setAttribute("error", "Insufficient Balance....");
+				 resp.sendRedirect("transaction.jsp");
+			}
+			double sendblncafter = sendblncbefore-amount;
+			user.setBalance(sendblncafter);
+			
+			Users reciver = TransactionDao.getUserId(email);
+			double currentbalance = reciver.getBalance();
+			double updatedbalance = currentbalance+amount;
+			reciver.setBalance(updatedbalance);
+			
+			
+			EntityManager em = JPAUtil.getEMF();
+			EntityTransaction et = em.getTransaction();
+			 
+			 et.begin();
+			 em.persist(bankTransaction);
+			 em.merge(reciver);
+			 em.merge(user);
+			 et.commit();
+		}
+		
+	}
+	
+}

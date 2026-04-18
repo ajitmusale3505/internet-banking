@@ -1,0 +1,20 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1" isELIgnored="false"
+    import="com.jsp.internatebanking.entity.Users"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<%
+Users user =(Users) session.getAttribute("user");
+%>
+
+<h1>User Name : ${user.name} </h1>
+<h1>Balance : ${user.balance} </h1>
+
+<a href="dashboard.jsp">Back To Dashboard</a>
+</body>
+</html>

@@ -1,0 +1,204 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ page import="com.jsp.internatebanking.entity.Users" %>
+<%@ page session="true" %>
+<%
+    Users user = (Users) session.getAttribute("user");
+    if (user == null) {
+        response.sendRedirect("login.jsp");
+        return;
+    }
+%>
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>User Profile — NexaBank</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/userprofile.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/transaction.css">
+</head>
+<body>
+<jsp:include page="navbar.jsp" />
+<!-- Top Navigation Bar -->
+<nav class="topnav">
+    <div class="topnav__brand">
+        <span class="topnav__logo-icon">&#9670;</span>
+        <span class="topnav__logo-text">NexaBank</span>
+    </div>
+    <div class="topnav__user">
+        <span class="topnav__greeting">Welcome, <strong><%=user.getName()%></strong></span>
+        <a href="<%=request.getContextPath()%>/logout" class="topnav__logout">Sign Out</a>
+    </div>
+</nav>
+
+<!-- Page Header -->
+<header class="page-header">
+    <div class="page-header__inner">
+        <p class="page-header__eyebrow">Account Management</p>
+        <h1 class="page-header__title">Your Profile</h1>
+    </div>
+</header>
+
+<!-- Main Content -->
+<main class="main-content">
+
+    <!-- Profile Card -->
+    <section class="card profile-card">
+        <div class="card__header">
+            <div class="card__header-icon">&#9673;</div>
+            <div>
+                <h2 class="card__title">Personal Information</h2>
+                <p class="card__subtitle">Update your name and email address</p>
+            </div>
+        </div>
+
+        <div class="profile-layout">
+
+            <!-- LEFT: Profile Form -->
+            <div class="profile-form-col">
+                <form action="<%=request.getContextPath()%>/updateProfile" method="post" class="profile-form" id="profileForm">
+                    <input type="hidden" name="id" value="<%=user.getId()%>" />
+
+                    <div class="form-group">
+                        <label class="form-label" for="nameInput">Full Name</label>
+                        <div class="input-wrapper">
+                            <span class="input-icon">&#9786;</span>
+                            <input class="form-input" type="text" id="nameInput" name="name" value="<%=user.getName()%>" required placeholder="Your full name" />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="emailInput">Email Address</label>
+                        <div class="input-wrapper">
+                            <span class="input-icon">&#9993;</span>
+                            <input class="form-input" type="email" id="emailInput" name="email" value="<%=user.getEmail()%>" required placeholder="your@email.com" />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Account Balance</label>
+                        <div class="input-wrapper">
+                            <span class="input-icon">&#8377;</span>
+                            <input class="form-input form-input--readonly" type="text" value="<%=user.getBalance()%>" readonly />
+                        </div>
+                        <p class="form-hint">Balance is read-only and managed by the system.</p>
+                    </div>
+
+                    <input type="submit" value="Save Changes" class="btn btn--primary" id="updateProfileBtn" />
+                </form>
+            </div>
+
+            <!-- RIGHT: Profile Image -->
+            <div class="profile-image-col">
+                <div class="avatar-card">
+                    <div class="avatar-wrapper" id="avatarWrapper">
+                        <% if (user.getProfileImage() != null) { %>
+                            <img class="avatar-img" id="avatarImg"
+                                 src="<%=request.getContextPath()%>/getProfileImage?id=<%=user.getId()%>"
+                                 alt="Profile Photo" />
+                        <% } else { %>
+                            <div class="avatar-placeholder" id="avatarPlaceholder">
+                                <span class="avatar-initials"><%=user.getName().substring(0,1).toUpperCase()%></span>
+                            </div>
+                        <% } %>
+                        <div class="avatar-overlay">
+                            <span>Change</span>
+                        </div>
+                    </div>
+                    <p class="avatar-name"><%=user.getName()%></p>
+                    <p class="avatar-email"><%=user.getEmail()%></p>
+                </div>
+
+                <form action="<%=request.getContextPath()%>/uploadProfileImage" method="post"
+                      enctype="multipart/form-data" class="upload-form" id="uploadForm">
+                    <label class="upload-label" for="profileImageInput">
+                        <span class="upload-icon">&#8679;</span>
+                        <span class="upload-text">Choose Photo</span>
+                        <input class="upload-input" type="file" id="profileImageInput" name="profileImage" required accept="image/*" />
+                    </label>
+                    <input type="submit" value="Upload Photo" class="btn btn--secondary" id="uploadBtn" />
+                </form>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Change Password Card -->
+    <section class="card password-card">
+        <div class="card__header">
+            <div class="card__header-icon card__header-icon--gold">&#9679;</div>
+            <div>
+                <h2 class="card__title">Change Password</h2>
+                <p class="card__subtitle">Secure your account with a new password</p>
+            </div>
+        </div>
+
+        <form action="<%=request.getContextPath()%>/changePassword" method="post" class="password-form" id="passwordForm">
+            <input type="hidden" name="id" value="<%=user.getId()%>" />
+
+            <div class="password-form__grid">
+                <div class="form-group">
+                    <label class="form-label" for="currentPassword">Current Password</label>
+                    <div class="input-wrapper">
+                        <span class="input-icon">&#128274;</span>
+                        <input class="form-input" type="password" id="currentPassword" name="currentPassword" required placeholder="Enter current password" />
+                        <button type="button" class="toggle-password" data-target="currentPassword" aria-label="Toggle visibility">&#128065;</button>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="newPassword">New Password</label>
+                    <div class="input-wrapper">
+                        <span class="input-icon">&#128275;</span>
+                        <input class="form-input" type="password" id="newPassword" name="newPassword" required placeholder="Enter new password" />
+                        <button type="button" class="toggle-password" data-target="newPassword" aria-label="Toggle visibility">&#128065;</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="password-footer">
+                <p class="password-note">
+                    <span class="password-note__icon">&#9432;</span>
+                    An OTP will be sent to your registered email to confirm the change.
+                </p>
+                <input type="submit" value="Send OTP &rarr;" class="btn btn--primary" id="sendOtpBtn" />
+            </div>
+        </form>
+    </section>
+
+</main>
+
+<!-- Footer -->
+<footer class="site-footer">
+    <p>&copy; 2025 NexaBank &mdash; All transactions are secured with 256-bit encryption.</p>
+</footer>
+
+<script>
+    // Toggle password visibility
+    document.querySelectorAll('.toggle-password').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+            var targetId = this.getAttribute('data-target');
+            var input = document.getElementById(targetId);
+            if (input.type === 'password') {
+                input.type = 'text';
+                this.style.opacity = '1';
+            } else {
+                input.type = 'password';
+                this.style.opacity = '0.5';
+            }
+        });
+    });
+
+    // Show filename on file select
+    document.getElementById('profileImageInput').addEventListener('change', function() {
+        var name = this.files[0] ? this.files[0].name : 'No file chosen';
+        document.querySelector('.upload-text').textContent = name;
+    });
+</script>
+
+</body>
+</html>

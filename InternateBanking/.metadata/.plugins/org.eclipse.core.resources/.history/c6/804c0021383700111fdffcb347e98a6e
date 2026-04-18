@@ -1,0 +1,5 @@
+package com.jsp.internatebanking.entity;
+
+public class BankTransaction {
+
+}

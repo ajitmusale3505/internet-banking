@@ -1,0 +1,186 @@
+/* Reset */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f4f7fb;
+}
+
+/* Header */
+h2 {
+    text-align: center;
+    padding: 20px;
+    color: #1e3a8a;
+}
+
+/* Table Container */
+table {
+    width: 80%;
+    margin: 20px auto;
+    border-collapse: collapse;
+    background-color: white;
+    box-shadow: 0px 4px 10px rgba(0,0,0,0.1);
+}
+
+/* Table Header */
+th {
+    background-color: #1e3a8a;
+    color: white;
+    padding: 12px;
+}
+
+/* Table Rows */
+td {
+    text-align: center;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+/* Hover effect */
+tr:hover {
+    background-color: #f1f5f9;
+}
+
+/* Debit / Credit colors */
+td.debit {
+    color: red;
+    font-weight: bold;
+}
+
+td.credit {
+    color: green;
+    font-weight: bold;
+}
+
+/* Button / Link */
+a {
+    display: block;
+    width: 200px;
+    margin: 20px auto;
+    text-align: center;
+    padding: 10px;
+    background-color: #1e3a8a;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+a:hover {
+    background-color: #2563eb;
+}
+
+/* ===== FILTER + ACTION BAR ===== */
+
+form[action="history"],
+form[action="downloadStatement"] {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+/* Container for top controls */
+.top-actions {
+    width: 80%;
+    margin: 0 auto 20px auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Filter dropdown */
+select {
+    padding: 6px 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    margin-left: 8px;
+}
+
+/* Apply Filter Button */
+input[type="submit"] {
+    padding: 7px 12px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+/* Filter Button */
+form[action="history"] input[type="submit"] {
+    background-color: #1e3a8a;
+    color: white;
+}
+
+form[action="history"] input[type="submit"]:hover {
+    background-color: #2563eb;
+}
+
+/* Download Button */
+form[action="downloadStatement"] input[type="submit"] {
+    background-color: #059669;
+    color: white;
+}
+
+form[action="downloadStatement"] input[type="submit"]:hover {
+    background-color: #10b981;
+}
+
+/* ===== TABLE IMPROVEMENT ===== */
+
+table {
+    width: 80%;
+    margin: auto;
+    border-collapse: collapse;
+    background: white;
+    box-shadow: 0px 4px 12px rgba(0,0,0,0.1);
+}
+
+th {
+    background-color: #1e3a8a;
+    color: white;
+    padding: 10px;
+}
+
+td {
+    padding: 10px;
+    text-align: center;
+}
+
+/* Row hover effect */
+tr:hover {
+    background-color: #f1f5f9;
+}
+
+/* ===== STATUS COLORS ===== */
+
+.debit {
+    color: #dc2626;
+    font-weight: bold;
+}
+
+.credit {
+    color: #16a34a;
+    font-weight: bold;
+}
+
+/* ===== PAGE TITLE ===== */
+
+h2 {
+    text-align: center;
+    color: #1e3a8a;
+}
+
+/* ===== BACK BUTTON ===== */
+
+a {
+    display: block;
+    width: 200px;
+    margin: 20px auto;
+    text-align: center;
+    padding: 10px;
+    background-color: #1e3a8a;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+a:hover {
+    background-color: #2563eb;
+}

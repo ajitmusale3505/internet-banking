@@ -1,0 +1,244 @@
+/* ===============================
+   USER PROFILE - LIGHT BANK THEME
+   =============================== */
+
+/* Reset */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f4f7fb;
+}
+
+/* ===== TOP NAVBAR ===== */
+
+.topnav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #1e3a8a;
+    padding: 12px 30px;
+    color: white;
+}
+
+.topnav__logo-text {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.topnav__greeting {
+    margin-right: 15px;
+}
+
+.topnav__logout {
+    color: white;
+    text-decoration: none;
+    padding: 6px 12px;
+    background-color: #2563eb;
+    border-radius: 5px;
+}
+
+.topnav__logout:hover {
+    background-color: #3b82f6;
+}
+
+/* ===== HEADER ===== */
+
+.page-header {
+    text-align: center;
+    padding: 25px;
+}
+
+.page-header__title {
+    color: #1e3a8a;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+/* ===== MAIN CONTENT ===== */
+
+.main-content {
+    width: 85%;
+    margin: auto;
+}
+
+/* ===== CARD ===== */
+
+.card {
+    background-color: white;
+    border-radius: 10px;
+    padding: 25px;
+    margin-bottom: 25px;
+    box-shadow: 0px 4px 10px rgba(0,0,0,0.1);
+}
+
+/* ===== CARD HEADER ===== */
+
+.card__header {
+    margin-bottom: 20px;
+}
+
+.card__title {
+    color: #1e3a8a;
+    margin: 0;
+}
+
+.card__subtitle {
+    color: gray;
+    font-size: 14px;
+}
+
+/* ===== PROFILE LAYOUT ===== */
+
+.profile-layout {
+    display: flex;
+    gap: 40px;
+}
+
+/* LEFT FORM */
+.profile-form-col {
+    flex: 2;
+}
+
+/* RIGHT IMAGE */
+.profile-image-col {
+    flex: 1;
+    text-align: center;
+}
+
+/* ===== FORM ===== */
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-label {
+    font-weight: bold;
+    color: #1e3a8a;
+}
+
+.form-input {
+    width: 100%;
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    margin-top: 5px;
+}
+
+/* READONLY FIELD */
+.form-input--readonly {
+    background-color: #e5e7eb;
+}
+
+/* ===== BUTTONS ===== */
+
+.btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn--primary {
+    background-color: #1e3a8a;
+    color: white;
+}
+
+.btn--primary:hover {
+    background-color: #2563eb;
+}
+
+.btn--secondary {
+    background-color: #059669;
+    color: white;
+}
+
+.btn--secondary:hover {
+    background-color: #10b981;
+}
+
+/* ===== PROFILE IMAGE ===== */
+
+.avatar-card {
+    background-color: #f9fafb;
+    padding: 15px;
+    border-radius: 10px;
+}
+
+.avatar-wrapper {
+    width: 120px;
+    height: 120px;
+    margin: auto;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 3px solid #1e3a8a;
+}
+
+.avatar-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.avatar-placeholder {
+    width: 100%;
+    height: 100%;
+    background-color: #cbd5f5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.avatar-initials {
+    font-size: 30px;
+    font-weight: bold;
+    color: #1e3a8a;
+}
+
+.avatar-name {
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+.avatar-email {
+    font-size: 13px;
+    color: gray;
+}
+
+/* ===== FILE UPLOAD ===== */
+
+.upload-form {
+    margin-top: 10px;
+}
+
+.upload-label {
+    display: block;
+    padding: 8px;
+    background-color: #e5e7eb;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.upload-input {
+    display: none;
+}
+
+/* ===== PASSWORD GRID ===== */
+
+.password-form__grid {
+    display: flex;
+    gap: 20px;
+}
+
+/* ===== PASSWORD FOOTER ===== */
+
+.password-footer {
+    margin-top: 15px;
+}
+
+/* ===== FOOTER ===== */
+
+.site-footer {
+    text-align: center;
+    padding: 20px;
+    color: gray;
+}

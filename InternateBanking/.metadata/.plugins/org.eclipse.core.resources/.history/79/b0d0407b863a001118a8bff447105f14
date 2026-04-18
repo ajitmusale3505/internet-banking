@@ -1,0 +1,206 @@
+/* ===== RESET ===== */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f4f7fb;
+}
+
+/* ===== HEADER ===== */
+h2 {
+    text-align: center;
+    padding: 20px;
+    color: #1e3a8a;
+}
+
+/* ===== TOP ACTION BAR ===== */
+.top-actions {
+    width: 80%;
+    margin: 20px auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Filter form */
+.filter-form {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.filter-form label {
+    font-weight: bold;
+    color: #1e3a8a;
+}
+
+/* Download form */
+.download-form {
+    display: flex;
+    align-items: center;
+}
+
+/* Dropdown */
+.filter-form select {
+    padding: 6px 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+/* ===== BUTTON BASE STYLE (IMPORTANT) ===== */
+input[type="submit"] {
+    padding: 8px 14px;
+    border-radius: 5px;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+/* Filter button */
+.filter-form input[type="submit"] {
+    background-color: #1e3a8a;
+    color: white;
+}
+
+.filter-form input[type="submit"]:hover {
+    background-color: #2563eb;
+}
+
+/* Download button */
+.download-form input[type="submit"] {
+    background-color: #059669;
+    color: white;
+}
+
+.download-form input[type="submit"]:hover {
+    background-color: #10b981;
+}
+
+/* ===== TABLE ===== */
+table {
+    width: 80%;
+    margin: 20px auto;
+    border-collapse: collapse;
+    background-color: white;
+    box-shadow: 0px 4px 10px rgba(0,0,0,0.1);
+}
+
+th {
+    background-color: #1e3a8a;
+    color: white;
+    padding: 12px;
+}
+
+td {
+    text-align: center;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+/* Hover effect */
+tr:hover {
+    background-color: #f1f5f9;
+}
+
+/* ===== STATUS COLORS ===== */
+.debit {
+    color: #dc2626;
+    font-weight: bold;
+}
+
+.credit {
+    color: #16a34a;
+    font-weight: bold;
+}
+
+/* ===== BACK BUTTON ===== */
+a {
+    display: block;
+    width: 200px;
+    margin: 20px auto;
+    text-align: center;
+    padding: 10px;
+    background-color: #1e3a8a;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+a:hover {
+    background-color: #2563eb;
+}
+
+/* ===== FIXED TOP SECTION ===== */
+
+.top-actions {
+    width: 80%;
+    margin: 20px auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Left filter box */
+.filter-box {
+    background: white;
+    padding: 10px 15px;
+    border-radius: 6px;
+    box-shadow: 0px 2px 6px rgba(0,0,0,0.1);
+}
+
+/* Right download box */
+.download-box {
+    background: white;
+    padding: 10px 15px;
+    border-radius: 6px;
+    box-shadow: 0px 2px 6px rgba(0,0,0,0.1);
+}
+
+/* Filter form alignment */
+.filter-form {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Label */
+.filter-form label {
+    font-weight: bold;
+    color: #1e3a8a;
+}
+
+/* Dropdown */
+.filter-form select {
+    padding: 6px 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+/* Buttons (base) */
+input[type="submit"] {
+    padding: 8px 14px;
+    border-radius: 5px;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* Filter button */
+.filter-form input[type="submit"] {
+    background-color: #1e3a8a;
+    color: white;
+}
+
+.filter-form input[type="submit"]:hover {
+    background-color: #2563eb;
+}
+
+/* Download button */
+.download-form input[type="submit"] {
+    background-color: #059669;
+    color: white;
+}
+
+.download-form input[type="submit"]:hover {
+    background-color: #10b981;
+}

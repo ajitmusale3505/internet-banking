@@ -1,0 +1,42 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8" isELIgnored="false"
+    import="com.jsp.internatebanking.entity.Users"%>
+    
+   <%
+    if (session.getAttribute("user") == null) {
+        response.sendRedirect("login.jsp");
+        return;
+    }
+%>
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Balance</title>
+
+<link rel="stylesheet" href="css/balance.css">
+
+</head>
+<body>
+
+<%
+Users user = (Users) session.getAttribute("user");
+%>
+
+<div class="balance-card">
+
+    <h1>User Name : ${user.name}</h1>
+    
+    <h1>Balance :</h1>
+    
+    <div class="balance-amount">
+        ₹ ${user.balance}
+    </div>
+
+    <a href="dashboard.jsp" class="back-btn">Back To Dashboard</a>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,108 @@
+/* Page */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f4f6f9;
+}
+
+/* Container */
+.container {
+    width: 900px;
+    margin: 40px auto;
+}
+
+/* Title */
+h2 {
+    text-align: center;
+    color: #1e3a8a;
+}
+
+/* Profile Section Layout */
+.profile-section {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+/* Left Card */
+.profile-form {
+    width: 60%;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 12px rgba(0,0,0,0.1);
+}
+
+/* Right Card */
+.profile-image {
+    width: 35%;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 12px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+/* Image */
+.profile-image img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    margin-top: 15px;
+    object-fit: cover;
+    border: 2px solid #1e3a8a;
+}
+
+/* Labels */
+label {
+    display: block;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+/* Inputs */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="file"] {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+/* Buttons */
+.btn-primary {
+    margin-top: 15px;
+    width: 100%;
+    padding: 10px;
+    background: #1e3a8a;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn-primary:hover {
+    background: #2563eb;
+}
+
+.btn-secondary {
+    margin-top: 10px;
+    width: 100%;
+    padding: 8px;
+    background: #e5e7eb;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Password Section */
+.password-section {
+    margin-top: 30px;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 12px rgba(0,0,0,0.1);
+}

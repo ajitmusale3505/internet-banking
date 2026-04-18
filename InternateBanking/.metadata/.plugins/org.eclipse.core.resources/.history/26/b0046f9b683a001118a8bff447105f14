@@ -1,0 +1,33 @@
+package com.jsp.internatebanking.controller;
+
+import java.io.IOException;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.jsp.internatebanking.dao.UserDao;
+import com.jsp.internatebanking.entity.Users;
+
+@WebServlet("/getProfileImage")
+public class GetProfileImageServlet {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
+		int id = Integer.parseInt(request.getParameter("id"));
+
+		UserDao dao = new UserDao();
+		Users user = dao.getUserById(id);
+
+		byte[] image = user.getProfileImage();
+
+		if (image != null) {
+			response.setContentType("image/jpeg"); // important
+			response.setContentLength(image.length);
+			response.getOutputStream().write(image);
+		} else {
+			response.getWriter().write("No Image Found");
+		}
+	}
+}

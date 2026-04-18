@@ -1,0 +1,80 @@
+package com.jsp.internatebanking.dao;
+
+import javax.persistence.EntityManager;
+
+import javax.persistence.Query;
+//import javax.transaction.Transaction;
+
+import org.hibernate.Session;
+
+import com.jsp.internatebanking.entity.Users;
+import com.jsp.internatebanking.util.JPAUtil;
+import com.jsp.internatebanking.util.PasswordUtil;
+import org.hibernate.Transaction;
+
+public class UserDao {
+	
+//	public static Users login(String email, String pass) {
+//		EntityManager em = JPAUtil.getEMF();
+//		System.out.println("email");
+//		System.out.println("pass");
+//		try {
+//			Query query = em.createQuery("from Users u where u.email=?1 and u.password =?2");
+//			query.setParameter(1, email);
+//			query.setParameter(2, pass);
+//			return (Users) query.getSingleResult();
+//		} catch (Exception e) {
+//			 return null;
+//		}
+//	}
+	
+	public static Users login(String email, String pass) {
+
+	    EntityManager em = JPAUtil.getEMF();
+
+	    try {
+	         
+	        Query query = em.createQuery("from Users u where u.email = ?1");
+	        query.setParameter(1, email);
+
+	        Users user = (Users) query.getSingleResult();
+
+	         
+	        String hashedInput = PasswordUtil.hashPassword(pass, user.getSalt());
+
+	       
+	        if (hashedInput.equals(user.getPassword())) {
+	            return user;  
+	        } else {
+	            return null;  
+	        }
+
+	    } catch (Exception e) {
+	        return null;  
+	    }
+	}
+	
+	public void updateUser(Users user) {
+
+	    EntityManager em = JPAUtil.getEMF();
+	    javax.persistence.EntityTransaction tx = em.getTransaction();
+
+	    tx.begin();
+
+	    em.merge(user);   
+
+	    tx.commit();
+	    em.close();
+	}
+	
+	 public Users getUserById(int id) {
+
+	        EntityManager em = JPAUtil.getEMF();
+	        Users user = em.find(Users.class, id);
+	        em.close();
+
+	        return user;
+	    }
+	
+	
+}

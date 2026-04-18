@@ -1,0 +1,35 @@
+package com.jsp.internatebanking.controller;
+
+import java.io.IOException;
+import java.util.List;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import com.jsp.internatebanking.dao.TransactionDao;
+import com.jsp.internatebanking.dao.UserDao;
+import com.jsp.internatebanking.entity.BankTransaction;
+import com.jsp.internatebanking.entity.Users;
+
+
+@WebServlet(value = "/history")
+public class HistoryController extends HttpServlet {
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+        HttpSession session = req.getSession();
+        Users user = (Users) session.getAttribute("user");
+
+        List<BankTransaction> list = TransactionDao.getAllTransactions(user.getId());
+
+        req.setAttribute("transactions", list);
+        req.setAttribute("userId", user.getId()); // ✅ IMPORTANT
+
+        req.getRequestDispatcher("history.jsp").forward(req, resp);
+    }
+}

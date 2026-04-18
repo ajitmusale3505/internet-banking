@@ -1,0 +1,41 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8" isELIgnored="false"%>
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Send Money</title>
+
+<link rel="stylesheet" href="css/transaction.css">
+
+</head>
+<body>
+
+<div class="transaction-container">
+
+    <h2>Send Money</h2>
+
+    <form action="transaction" method="post">
+
+        <input type="email" name="email" placeholder="Enter User Email...." required><br>
+
+        <input type="number" name="amount" placeholder="0.00" required><br>
+
+        <input type="submit" name="send" value="Send">
+
+        <h4 class="error-msg">${error}</h4>
+        <%
+            session.removeAttribute("error");
+        %>
+
+        <h4 class="success-msg">${success}</h4>
+
+    </form>
+
+    <a href="dashboard.jsp" class="back-btn">Back To Dashboard</a>
+
+</div>
+
+</body>
+</html>

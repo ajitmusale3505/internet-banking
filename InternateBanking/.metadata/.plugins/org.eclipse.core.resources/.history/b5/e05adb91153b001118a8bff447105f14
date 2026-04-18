@@ -1,0 +1,63 @@
+package com.jsp.internatebanking.controller;
+
+import java.io.IOException;
+import java.util.List;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.*;
+
+import com.itextpdf.kernel.pdf.PdfWriter;
+import com.itextpdf.kernel.pdf.PdfDocument;
+import com.itextpdf.layout.Document;
+import com.itextpdf.layout.element.*;
+
+import com.jsp.internatebanking.dao.TransactionDao;
+import com.jsp.internatebanking.entity.BankTransaction;
+import com.jsp.internatebanking.entity.Users;
+
+@WebServlet(value = "/downloadStatement")
+public class DownloadStatement extends HttpServlet{
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+        HttpSession session = request.getSession();
+        Users user = (Users) session.getAttribute("user");
+
+        TransactionDao dao = new TransactionDao();
+        List<BankTransaction> transactions = dao.getAllTransactions(user.getId());
+
+        // Set response type
+        response.setContentType("application/pdf");
+        response.setHeader("Content-Disposition", "attachment; filename=statement.pdf");
+
+        PdfWriter writer = new PdfWriter(response.getOutputStream());
+        PdfDocument pdf = new PdfDocument(writer);
+        Document document = new Document(pdf);
+
+        document.add(new Paragraph("Bank Statement"));
+        document.add(new Paragraph(" "));
+
+        // Table with 4 columns
+        Table table = new Table(4);
+
+        table.addCell("Type");
+        table.addCell("Transaction ID");
+        table.addCell("Amount");
+        table.addCell("Date");
+
+        for (BankTransaction t : transactions) {
+
+            String type = (t.getSenderID() == user.getId()) ? "DEBIT" : "CREDIT";
+
+            table.addCell(type);
+            table.addCell(String.valueOf(t.getId()));
+            table.addCell(String.valueOf(t.getAmount()));
+            table.addCell(String.valueOf(t.getTransactionTime()));
+        }
+
+        document.add(table);
+        document.close();
+    }
+}

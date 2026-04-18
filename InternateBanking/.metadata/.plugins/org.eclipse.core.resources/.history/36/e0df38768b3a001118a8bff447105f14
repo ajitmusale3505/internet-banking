@@ -1,0 +1,28 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+
+<%@ page import="com.jsp.internatebanking.entity.Users" %>
+
+<%
+Users user = (Users) session.getAttribute("user");
+%>
+
+<div class="navbar">
+
+    <div class="navbar-left">
+        <span class="logo">MyBank</span>
+    </div>
+
+    <div class="navbar-center">
+        <a href="dashboard.jsp">Home</a>
+        <a href="history">Transactions</a>
+        <a href="transaction.jsp">Transfer</a>
+        <a href="userprofile.jsp">Profile</a>
+    </div>
+
+    <div class="navbar-right">
+        <span>Hi, <%= user != null ? user.getName() : "User" %></span>
+        <a href="logout" class="logout-btn">Logout</a>
+    </div>
+
+</div>

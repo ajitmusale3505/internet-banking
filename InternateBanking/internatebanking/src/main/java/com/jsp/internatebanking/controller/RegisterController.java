@@ -1,0 +1,49 @@
+package com.jsp.internatebanking.controller;
+
+import java.io.IOException;
+
+import java.io.PrintWriter;
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.jsp.internatebanking.Driver.UserDriver;
+import com.jsp.internatebanking.entity.Users;
+import com.jsp.internatebanking.util.JPAUtil;
+import com.jsp.internatebanking.util.PasswordUtil;
+
+@WebServlet(value = "/register")
+public class RegisterController extends HttpServlet {
+
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		String name = req.getParameter("name");
+		String email = req.getParameter("email");
+		String pass = req.getParameter("password");
+
+		EntityManager em = JPAUtil.getEMF();
+		EntityTransaction et = em.getTransaction();
+		String salt = PasswordUtil.generateSalt();
+
+	 
+		String hashedPassword = PasswordUtil.hashPassword(pass, salt);
+
+		Users user = new Users();
+		user.setEmail(email);
+		user.setPassword(hashedPassword);
+		user.setSalt(salt); // store salt
+		user.setName(name);
+		user.setBalance(1000);
+
+		et.begin();
+		em.persist(user);
+		et.commit();
+
+		resp.sendRedirect("login.jsp");
+	}
+}

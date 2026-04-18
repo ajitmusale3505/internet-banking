@@ -1,0 +1,47 @@
+package com.jsp.internatebanking.controller;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+@WebServlet(value = "/assistant")
+public class Assistant extends HttpServlet{
+	protected void doGet(HttpServletRequest req, HttpServletResponse res)
+            throws ServletException, IOException {
+
+        // QUESTIONS
+        List<String> questions = new ArrayList<>();
+        questions.add("How to view balance?");
+        questions.add("How to change password?");
+        questions.add("How to update email?");
+        questions.add("How to transfer money?");
+        questions.add("How to view transaction history?");
+
+        // ANSWERS
+        List<String> answers = new ArrayList<>();
+        answers.add("Go to Dashboard and click on 'Check Balance'.");
+        answers.add("Go to Profile → Change Password → Enter OTP.");
+        answers.add("Go to Profile → Edit Email and save changes.");
+        answers.add("Go to Send Money page and enter details.");
+        answers.add("Go to Transactions page to view history.");
+
+        req.setAttribute("questions", questions);
+
+        String qid = req.getParameter("qid");
+
+        if (qid != null) {
+            int index = Integer.parseInt(qid);
+            String selectedAnswer = answers.get(index);
+            req.setAttribute("answer", selectedAnswer);
+            req.setAttribute("selectedQ", questions.get(index));
+        }
+
+        req.getRequestDispatcher("assistant.jsp").forward(req, res);
+    }
+}

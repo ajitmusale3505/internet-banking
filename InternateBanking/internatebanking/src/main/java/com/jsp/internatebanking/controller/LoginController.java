@@ -1,0 +1,46 @@
+package com.jsp.internatebanking.controller;
+
+import java.io.IOException;
+import java.util.jar.Attributes.Name;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import com.jsp.internatebanking.Driver.UserDriver;
+import com.jsp.internatebanking.dao.UserDao;
+import com.jsp.internatebanking.entity.Users;
+
+@WebServlet("/login")
+public class LoginController extends HttpServlet{
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		 
+		String email = req.getParameter("email");
+		String pass = req.getParameter("pass");
+		 
+		System.out.println("Email : "+email);
+		System.out.println("Passowrd : "+pass);
+		
+		
+		Users users = UserDao.login(email, pass);
+		HttpSession session = req.getSession();
+		if (users!=null) {
+			session.setAttribute("user", users);
+			session.setAttribute("name",  users.getName());
+			session.setAttribute("balance", users.getBalance());
+			System.out.println("Balance : "+users.getBalance());
+			session.setMaxInactiveInterval(120);
+			resp.sendRedirect("dashboard.jsp");
+		}
+		else {
+			req.setAttribute("message", "Invalid Credentials");
+			RequestDispatcher rd = req.getRequestDispatcher("login.jsp");
+			rd.forward(req, resp);
+		}
+	}
+}

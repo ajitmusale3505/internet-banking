@@ -1,0 +1,22 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+    <%@ page session="true" %>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<h2>Enter OTP</h2>
+
+<form action="<%=request.getContextPath()%>/verifyOtp" method="post">
+
+    <label>OTP:</label><br>
+    <input type="text" name="otp" required /><br><br>
+
+    <input type="submit" value="Verify OTP" />
+
+</form>
+</body>
+</html>

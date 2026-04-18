@@ -1,0 +1,42 @@
+package com.jsp.internatebanking.controller;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
+import javax.persistence.Query;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import com.jsp.internatebanking.entity.Users;
+import com.jsp.internatebanking.util.JPAUtil;
+
+@WebServlet(value = "/balance")
+public class BalanceController extends HttpServlet{
+	
+	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
+		HttpSession session = req.getSession();
+		Users user = (Users) session.getAttribute("user");
+		System.out.println(user);
+		 
+		 EntityManager em = JPAUtil.getEMF();
+		 EntityTransaction et = em.getTransaction();
+		 
+		 Query query = em.createQuery("FROM Users u WHERE u.email=:email");
+		 query.setParameter("email", user.getEmail());
+		 Users singleResult =(Users) query.getSingleResult();
+		 
+		 
+		 session.setAttribute("balance", singleResult.getBalance());
+		 session.setAttribute("name", singleResult.getName());
+		 resp.sendRedirect("balance.jsp");
+	}
+	
+}

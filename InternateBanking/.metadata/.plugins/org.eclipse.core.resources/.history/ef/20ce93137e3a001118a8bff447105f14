@@ -1,0 +1,94 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+
+<%@ page import="com.jsp.internatebanking.entity.Users" %>
+<%@ page session="true" %>
+
+<%
+    Users user = (Users) session.getAttribute("user");
+    if (user == null) {
+        response.sendRedirect("login.jsp");
+        return;
+    }
+%>
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>User Profile</title>
+<link rel="stylesheet" href="css/userprofile.css">
+</head>
+
+<body>
+
+<div class="container">
+
+    <h2>User Profile</h2>
+
+    <div class="profile-section">
+
+        <!-- LEFT SIDE -->
+        <div class="profile-form">
+
+            <form action="<%=request.getContextPath()%>/updateProfile" method="post">
+
+                <input type="hidden" name="id" value="<%=user.getId()%>" />
+
+                <label>Name</label>
+                <input type="text" name="name" value="<%=user.getName()%>" required />
+
+                <label>Email</label>
+                <input type="email" name="email" value="<%=user.getEmail()%>" required />
+
+                <label>Balance</label>
+                <input type="text" value="<%=user.getBalance()%>" readonly />
+
+                <input type="submit" value="Update Profile" class="btn-primary"/>
+
+            </form>
+
+        </div>
+
+        <!-- RIGHT SIDE -->
+        <div class="profile-image">
+
+            <form action="<%=request.getContextPath()%>/uploadProfileImage" method="post" enctype="multipart/form-data">
+                <input type="file" name="profileImage" required />
+                <input type="submit" value="Upload" class="btn-secondary"/>
+            </form>
+
+            <% if (user.getProfileImage() != null) { %>
+                <img src="<%=request.getContextPath()%>/getProfileImage?id=<%=user.getId()%>" />
+            <% } else { %>
+                <p>No Image</p>
+            <% } %>
+
+        </div>
+
+    </div>
+
+    <div class="password-section">
+
+        <h3>Change Password</h3>
+
+        <form action="<%=request.getContextPath()%>/changePassword" method="post">
+
+            <input type="hidden" name="id" value="<%=user.getId()%>" />
+
+            <label>Current Password</label>
+            <input type="password" name="currentPassword" required />
+
+            <label>New Password</label>
+            <input type="password" name="newPassword" required />
+
+            <input type="submit" value="Send OTP" class="btn-primary"/>
+
+        </form>
+
+    </div>
+
+</div>
+
+</body>
+</html>

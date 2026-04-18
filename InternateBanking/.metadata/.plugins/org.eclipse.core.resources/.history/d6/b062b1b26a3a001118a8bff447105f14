@@ -1,0 +1,5 @@
+package com.jsp.internatebanking.util;
+
+public class SendEmail {
+
+}

@@ -1,0 +1,103 @@
+/* ===== BODY ===== */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f4f7fb;
+}
+
+/* ===== NAVBAR ===== */
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: #1e3a8a;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 30px;
+    align-items: center;
+    z-index: 1000;
+}
+
+.logo {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.navbar a {
+    color: white;
+    text-decoration: none;
+    margin: 0 10px;
+}
+
+.navbar a:hover {
+    text-decoration: underline;
+}
+
+.logout-btn {
+    background-color: #2563eb;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+/* ===== HERO ===== */
+.hero {
+    margin-top: 80px;
+    text-align: center;
+    padding: 60px 20px;
+}
+
+.hero h1 {
+    color: #1e3a8a;
+    font-size: 32px;
+}
+
+.hero p {
+    color: gray;
+    margin-bottom: 30px;
+}
+
+.hero-buttons a {
+    display: inline-block;
+    margin: 10px;
+    padding: 12px 20px;
+    background-color: #1e3a8a;
+    color: white;
+    text-decoration: none;
+    border-radius: 6px;
+}
+
+.hero-buttons a:hover {
+    background-color: #2563eb;
+}
+
+/* ===== INFO SECTION ===== */
+.info-section {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding: 40px;
+}
+
+.info-card {
+    background: white;
+    padding: 20px;
+    width: 250px;
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0,0,0,0.1);
+}
+
+.info-card h3 {
+    color: #1e3a8a;
+}
+
+/* ===== CONTACT ===== */
+.contact {
+    text-align: center;
+    padding: 40px;
+}
+
+.contact h2 {
+    color: #1e3a8a;
+}

@@ -1,0 +1,38 @@
+/* Balance Card */
+.balance-card {
+    width: 400px;
+    margin: 80px auto;
+    padding: 25px;
+    background-color: white;
+    box-shadow: 0px 4px 12px rgba(0,0,0,0.1);
+    border-radius: 8px;
+    text-align: center;
+}
+
+/* Heading */
+.balance-card h1 {
+    color: #1e3a8a;
+    margin: 15px 0;
+}
+
+/* Balance highlight */
+.balance-amount {
+    font-size: 28px;
+    color: green;
+    font-weight: bold;
+}
+
+/* Back button */
+.back-btn {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #1e3a8a;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.back-btn:hover {
+    background-color: #2563eb;
+}

@@ -1,0 +1,26 @@
+package com.jsp.internatebanking.dao;
+
+import javax.persistence.EntityManager;
+import javax.persistence.Query;
+
+import com.jsp.internatebanking.entity.Users;
+import com.jsp.internatebanking.util.JPAUtil;
+
+public class UserDao {
+	
+	public static Users login(String email, String pass) {
+		EntityManager em = JPAUtil.getEMF();
+		System.out.println("email");
+		System.out.println("pass");
+		try {
+			Query query = em.createQuery("from Users u where u.email=?1 and u.password =?2");
+			query.setParameter(1, email);
+			query.setParameter(2, pass);
+			return (Users) query.getSingleResult();
+		} catch (Exception e) {
+			 return null;
+		}
+	}
+	
+	
+}

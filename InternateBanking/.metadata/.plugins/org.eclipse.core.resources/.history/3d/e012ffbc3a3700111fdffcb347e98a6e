@@ -1,0 +1,5 @@
+package com.jsp.internatebanking.dao;
+
+public class TransactionDao {
+
+}

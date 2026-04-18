@@ -1,0 +1,52 @@
+package com.jsp.internatebanking.dao;
+
+import javax.persistence.EntityManager;
+import javax.persistence.Query;
+
+import com.jsp.internatebanking.entity.Users;
+import com.jsp.internatebanking.util.JPAUtil;
+
+public class UserDao {
+	
+//	public static Users login(String email, String pass) {
+//		EntityManager em = JPAUtil.getEMF();
+//		System.out.println("email");
+//		System.out.println("pass");
+//		try {
+//			Query query = em.createQuery("from Users u where u.email=?1 and u.password =?2");
+//			query.setParameter(1, email);
+//			query.setParameter(2, pass);
+//			return (Users) query.getSingleResult();
+//		} catch (Exception e) {
+//			 return null;
+//		}
+//	}
+	
+	public static Users login(String email, String pass) {
+
+	    EntityManager em = JPAUtil.getEMF();
+
+	    try {
+	        // Fetch user ONLY by email
+	        Query query = em.createQuery("from Users u where u.email = ?1");
+	        query.setParameter(1, email);
+
+	        Users user = (Users) query.getSingleResult();
+
+	        // Hash input password using stored salt
+	        String hashedInput = PasswordUtil.hashPassword(pass, user.getSalt());
+
+	        // Compare hashed password
+	        if (hashedInput.equals(user.getPassword())) {
+	            return user; // login success
+	        } else {
+	            return null; // wrong password
+	        }
+
+	    } catch (Exception e) {
+	        return null; // user not found or error
+	    }
+	}
+	
+	
+}

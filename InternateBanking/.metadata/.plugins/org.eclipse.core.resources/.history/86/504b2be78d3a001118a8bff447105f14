@@ -1,0 +1,72 @@
+/* Transaction Form */
+.transaction-container {
+    width: 400px;
+    margin: 80px auto;
+    padding: 25px;
+    background-color: white;
+    box-shadow: 0px 4px 12px rgba(0,0,0,0.1);
+    border-radius: 8px;
+    text-align: center;
+}
+
+body {
+    margin: 0;
+    padding-top: 80px; /* 👈 VERY IMPORTANT */
+}
+
+/* Heading */
+.transaction-container h2 {
+    color: #1e3a8a;
+    margin-bottom: 20px;
+}
+
+/* Input fields */
+.transaction-container input[type="email"],
+.transaction-container input[type="number"] {
+    width: 90%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Button */
+.transaction-container input[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    background-color: #1e3a8a;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.transaction-container input[type="submit"]:hover {
+    background-color: #2563eb;
+}
+
+/* Messages */
+.error-msg {
+    color: red;
+    margin-top: 10px;
+}
+
+.success-msg {
+    color: green;
+    margin-top: 10px;
+}
+
+/* Back button */
+.back-btn {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 10px 20px;
+    background-color: #1e3a8a;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.back-btn:hover {
+    background-color: #2563eb;
+}
